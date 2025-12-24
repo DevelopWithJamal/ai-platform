@@ -1,11 +1,16 @@
 export async function login(email, password) {
-  // TEMP: replace with backend API later
-  if (email === "admin@ai.com" && password === "admin123") {
-    localStorage.setItem("token", "mock-admin-token");
-    return;
-  }
+  const res = await fetch("http://localhost:7000/auth/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ email, password })
+  });
 
-  throw new Error("Invalid credentials");
+  if (!res.ok) throw new Error("Login failed");
+
+  const data = await res.json();
+  localStorage.setItem("token", data.token);
 }
 
 export function logout() {
@@ -15,4 +20,3 @@ export function logout() {
 export function isAuthenticated() {
   return !!localStorage.getItem("token");
 }
-
