@@ -1,7 +1,7 @@
 [
   {
     "name": "new_app",
-    "apiKey": "6b903188e1198aeae7cdc9868d5fa5838a46867a0d8b097c6f2351ff99b96cf6",
+    "apiKey": "26cfd82e19c0445cbd989f27209ee01f4f472d24162e287b2a9babacab65246a",
     "model": "mistral:7b",
     "rateLimit": 8,
     "maxLength": 600,
@@ -17,7 +17,7 @@
   },
   {
     "name": "jamal",
-    "apiKey": "123684a94a27578b2e2621717db20bbc29eff6807e5562a792412f3f5905600c",
+    "apiKey": "dcb8651e382440c31bc873782c39862b903b6346b0e2fc223171468d55ff639c",
     "model": "mistral:7b",
     "rateLimit": 5,
     "maxLength": 300,
@@ -26,7 +26,7 @@
   },
   {
     "name": "jamal",
-    "apiKey": "5df9211920c5cecd7c7bb9a8f87b340ae24c2712636a87cf3d45a2368b398482",
+    "apiKey": "d9a69223a545aa90d8a1eb03c098fb52b2f05e3cebe626550ccdadd5dbf4384d",
     "model": "mistral:7b",
     "rateLimit": 5,
     "maxLength": 300,
