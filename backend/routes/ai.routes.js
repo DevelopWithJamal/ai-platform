@@ -2,6 +2,7 @@ import express from "express";
 import { apiAuth } from "../middleware/auth.middleware.js";
 import { clientRateLimiter } from "../middleware/rateLimiter.js";
 import { enhanceText } from "../services/ai.service.js";
+import { trackUsage } from "../services/usage.service.js";
 
 const router = express.Router();
 
@@ -29,6 +30,10 @@ router.post(
         });
       }
 
+      // ✅ TRACK USAGE (THIS WAS MISSING)
+      trackUsage(req.client.apiKey, req.client.name);
+
+      // Call AI
       const result = await enhanceText(text, req.client);
 
       res.json({ result });
@@ -42,4 +47,3 @@ router.post(
 );
 
 export default router;
-

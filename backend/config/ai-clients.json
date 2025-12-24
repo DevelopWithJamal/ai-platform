@@ -2,7 +2,7 @@
   {
     "name": "new_app",
     "apiKey": "6d63dc219bc50e63a0b635472285d12f222905368323a01a3e7619c047da7356",
-    "model": "phi3:latest",
+    "model": "mistral:instruct",
     "rateLimit": 8,
     "maxLength": 600,
     "enabled": true
@@ -32,5 +32,14 @@
     "maxLength": 300,
     "enabled": true,
     "createdAt": "2025-12-24T13:42:31.529Z"
+  },
+  {
+    "name": "jamalasdf",
+    "apiKey": "3913a96eb6e475ef10cf4724dd18b8a63b0800604eaf10f64e4ca80409f3457b",
+    "model": "mistral:instruct",
+    "rateLimit": 0,
+    "maxLength": 300,
+    "enabled": true,
+    "createdAt": "2025-12-24T15:47:27.023Z"
   }
 ]
