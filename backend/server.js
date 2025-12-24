@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config(); // ✅ Load env FIRST
 import authRoutes from "./routes/auth.routes.js";
+import adminRoutes from "./routes/admin.routes.js";
 
 import express from "express";
 import cors from "cors";
@@ -22,6 +23,8 @@ app.get("/", (req, res) => {
 
 // AI routes
 app.use("/api", aiRoutes);
+app.use("/admin", adminRoutes);
+
 
 const PORT = process.env.PORT || 5000;
 
