@@ -2,7 +2,7 @@
   {
     "name": "new_app",
     "apiKey": "26cfd82e19c0445cbd989f27209ee01f4f472d24162e287b2a9babacab65246a",
-    "model": "mistral:7b",
+    "model": "phi3:latest",
     "rateLimit": 8,
     "maxLength": 600,
     "enabled": true

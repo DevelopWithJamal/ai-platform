@@ -4,34 +4,32 @@ import axios from "axios";
  * Enhance text using local Ollama AI
  */
 export async function enhanceText(text, client) {
+  try {
     const response = await axios.post(
-        "http://localhost:11434/api/generate",
-        {
-            model: client.model,
-            prompt: `
-You are a professional resume editor.
-Rewrite the given text into ONE single professional sentence.
-Rules:
-- NO new lines
-- NO bullet points
-- NO headings
-- NO lists
-- NO extra information
-- Preserve original meaning
-- ATS-friendly
-- Return ONE line only
+      `${process.env.OLLAMA_BASE_URL}/api/generate`,
+      {
+        model: client.model,
+prompt: `You are a professional resume editor.
+Return ONLY ONE single professional sentence.
+Do NOT explain anything.
+Do NOT repeat instructions.
+Do NOT add headings, lists, or extra text.
+Do NOT include quotation marks.
+Make it ATS-friendly and concise.
 
-Text:
+CONTENT TO REWRITE:
 ${text}
-`
-            ,
-            stream: false
-        },
-        {
-            timeout: 60000 // 60 seconds safety timeout
-        }
+`,
+        stream: false
+      },
+      {
+        timeout: 60000 // 60 seconds safety timeout
+      }
     );
 
     return response.data.response.trim();
+  } catch (error) {
+    console.error("❌ Ollama AI error:", error.message);
+    throw new Error("AI processing failed");
+  }
 }
-
