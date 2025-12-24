@@ -1,7 +1,7 @@
 [
   {
     "name": "resume_app",
-    "apiKey": "rk_live_resume_001",
+    "apiKey": "2095fa26c24cbbbfd4bd3d6d53c5e1978a14343cf62103bcb94391462fd5a319",
     "model": "mistral:7b",
     "rateLimit": 10,
     "maxLength": 800,
@@ -29,11 +29,11 @@
     "model": "mistral:7b",
     "rateLimit": 8,
     "maxLength": 600,
-    "enabled": true
+    "enabled": false
   },
   {
     "name": "jamal",
-    "apiKey": "8b9726302b1ba2b76e03f1628ba0adc8db44b1da5602ec0c",
+    "apiKey": "46845b21e3681e6254c0bf924cb80399fbe350e03d38b725f746fa804a842fe2",
     "model": "mistral:7b",
     "rateLimit": 5,
     "maxLength": 300,

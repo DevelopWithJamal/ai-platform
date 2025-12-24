@@ -1,11 +1,18 @@
 import express from "express";
 import fs from "fs";
 import path from "path";
-import { verifyAdmin } from "../middleware/auth.jwt.js";
 import crypto from "crypto";
+import { verifyAdmin } from "../middleware/auth.jwt.js";
 
 const router = express.Router();
 const filePath = path.resolve(process.cwd(), "config", "ai-clients.json");
+
+// Available AI models (central control)
+const AVAILABLE_MODELS = [
+  "mistral:7b",
+  "llama3",
+  "gpt-oss:120b-cloud"
+];
 
 function readClients() {
   return JSON.parse(fs.readFileSync(filePath, "utf-8"));
@@ -14,69 +21,98 @@ function readClients() {
 function writeClients(data) {
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
 }
+
+/**
+ * GET /admin/clients
+ */
+router.get("/", verifyAdmin, (req, res) => {
+  res.json(readClients());
+});
+
+/**
+ * GET /admin/clients/models
+ */
+router.get("/models", verifyAdmin, (req, res) => {
+  res.json(AVAILABLE_MODELS);
+});
+
 /**
  * POST /admin/clients
- * Create new API client
+ * Create new API key (AUTO-GENERATED)
  */
 router.post("/", verifyAdmin, (req, res) => {
   const { name, model, rateLimit, maxLength } = req.body;
 
   if (!name || !model) {
-    return res.status(400).json({ error: "Name and model are required" });
+    return res.status(400).json({ error: "Name and model required" });
+  }
+
+  if (!AVAILABLE_MODELS.includes(model)) {
+    return res.status(400).json({ error: "Invalid model" });
   }
 
   const clients = readClients();
 
-  const newClient = {
+  const client = {
     name,
-    apiKey: crypto.randomBytes(24).toString("hex"),
+    apiKey: crypto.randomBytes(32).toString("hex"),
     model,
-    rateLimit: rateLimit || 5,
-    maxLength: maxLength || 300,
-    enabled: true
+    rateLimit: rateLimit ?? 5,
+    maxLength: maxLength ?? 300,
+    enabled: true,
+    createdAt: new Date().toISOString()
   };
 
-  clients.push(newClient);
+  clients.push(client);
   writeClients(clients);
 
-  res.status(201).json({ client: newClient });
-});
-
-
-/**
- * GET /admin/clients
- * List all API clients
- */
-router.get("/", verifyAdmin, (req, res) => {
-  const clients = readClients();
-  res.json(clients);
+  res.status(201).json({ client });
 });
 
 /**
  * PUT /admin/clients/:apiKey
- * Update client settings
+ * Update settings
  */
 router.put("/:apiKey", verifyAdmin, (req, res) => {
-  const { apiKey } = req.params;
-  const { rateLimit, maxLength, enabled, model } = req.body;
-
   const clients = readClients();
-  const index = clients.findIndex(c => c.apiKey === apiKey);
+  const client = clients.find(c => c.apiKey === req.params.apiKey);
 
-  if (index === -1) {
-    return res.status(404).json({ error: "Client not found" });
+  if (!client) return res.status(404).json({ error: "Not found" });
+
+  Object.assign(client, req.body);
+  writeClients(clients);
+
+  res.json({ client });
+});
+
+/**
+ * PUT /admin/clients/:apiKey/regenerate
+ */
+router.put("/:apiKey/regenerate", verifyAdmin, (req, res) => {
+  const clients = readClients();
+  const client = clients.find(c => c.apiKey === req.params.apiKey);
+
+  if (!client) return res.status(404).json({ error: "Not found" });
+
+  client.apiKey = crypto.randomBytes(32).toString("hex");
+  writeClients(clients);
+
+  res.json({ apiKey: client.apiKey });
+});
+
+/**
+ * DELETE /admin/clients/:apiKey
+ */
+router.delete("/:apiKey", verifyAdmin, (req, res) => {
+  const clients = readClients();
+  const filtered = clients.filter(c => c.apiKey !== req.params.apiKey);
+
+  if (clients.length === filtered.length) {
+    return res.status(404).json({ error: "Not found" });
   }
 
-  clients[index] = {
-    ...clients[index],
-    rateLimit: rateLimit ?? clients[index].rateLimit,
-    maxLength: maxLength ?? clients[index].maxLength,
-    enabled: enabled ?? clients[index].enabled,
-    model: model ?? clients[index].model
-  };
-
-  writeClients(clients);
-  res.json({ success: true, client: clients[index] });
+  writeClients(filtered);
+  res.json({ success: true });
 });
 
 export default router;
