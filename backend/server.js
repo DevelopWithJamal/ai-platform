@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 dotenv.config(); // ✅ Load env FIRST
 import authRoutes from "./routes/auth.routes.js";
 import adminRoutes from "./routes/admin.routes.js";
+import clientsRoutes from "./routes/clients.routes.js";
 
 import express from "express";
 import cors from "cors";
@@ -12,6 +13,7 @@ const app = express();
 app.use(cors());
 app.use(express.json({ limit: "1mb" }));
 app.use("/auth", authRoutes);
+app.use("/admin/clients", clientsRoutes);
 
 // Health check
 app.get("/", (req, res) => {

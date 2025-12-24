@@ -1,18 +1,42 @@
 [
-    {
-        "name": "resume_app",
-        "apiKey": "rk_live_resume_001",
-        "model": "mistral:7b",
-        "rateLimit": 10,
-        "maxLength": 800,
-        "enabled": true
-    },
-    {
-        "name": "toy_admin",
-        "apiKey": "tk_live_toy_001",
-        "model": "llama3",
-        "rateLimit": 5,
-        "maxLength": 300,
-        "enabled": true
-    }
+  {
+    "name": "resume_app",
+    "apiKey": "rk_live_resume_001",
+    "model": "mistral:7b",
+    "rateLimit": 10,
+    "maxLength": 800,
+    "enabled": true
+  },
+  {
+    "name": "toy_admin",
+    "apiKey": "tk_live_toy_001",
+    "model": "llama3",
+    "rateLimit": 5,
+    "maxLength": 300,
+    "enabled": true
+  },
+  {
+    "name": "new_app",
+    "apiKey": "229fc7a32eecd7a840545198bb25929535f5410c0606dfdf",
+    "model": "mistral:7b",
+    "rateLimit": 8,
+    "maxLength": 600,
+    "enabled": true
+  },
+  {
+    "name": "jamal_app",
+    "apiKey": "f47221b99cc48c1adc7d9556e48e3b5b09490cc74cece269",
+    "model": "mistral:7b",
+    "rateLimit": 8,
+    "maxLength": 600,
+    "enabled": true
+  },
+  {
+    "name": "jamal",
+    "apiKey": "8b9726302b1ba2b76e03f1628ba0adc8db44b1da5602ec0c",
+    "model": "mistral:7b",
+    "rateLimit": 5,
+    "maxLength": 300,
+    "enabled": false
+  }
 ]
