@@ -1,14 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
-
-function Dashboard() {
-  return (
-    <div className="p-8 text-xl">
-      ✅ Logged in — Dashboard coming next
-    </div>
-  );
-}
 
 export default function App() {
   return (
