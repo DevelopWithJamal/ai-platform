@@ -5,7 +5,7 @@
     "model": "mistral:7b",
     "rateLimit": 10,
     "maxLength": 800,
-    "enabled": true
+    "enabled": false
   },
   {
     "name": "toy_admin",
