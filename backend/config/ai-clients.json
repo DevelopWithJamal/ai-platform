@@ -1,7 +1,7 @@
 [
   {
     "name": "new_app",
-    "apiKey": "26cfd82e19c0445cbd989f27209ee01f4f472d24162e287b2a9babacab65246a",
+    "apiKey": "6d63dc219bc50e63a0b635472285d12f222905368323a01a3e7619c047da7356",
     "model": "phi3:latest",
     "rateLimit": 8,
     "maxLength": 600,
