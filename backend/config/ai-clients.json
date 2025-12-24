@@ -1,23 +1,15 @@
 [
   {
-    "name": "resume_app",
-    "apiKey": "2095fa26c24cbbbfd4bd3d6d53c5e1978a14343cf62103bcb94391462fd5a319",
-    "model": "mistral:7b",
-    "rateLimit": 10,
-    "maxLength": 800,
-    "enabled": false
-  },
-  {
     "name": "toy_admin",
-    "apiKey": "tk_live_toy_001",
-    "model": "llama3",
+    "apiKey": "c78dba79e16d95cfc11b1262fa3fbb81e28cb4d02b195aad9a97dc88fa1fefe5",
+    "model": "mistral:7b",
     "rateLimit": 5,
     "maxLength": 300,
     "enabled": true
   },
   {
     "name": "new_app",
-    "apiKey": "229fc7a32eecd7a840545198bb25929535f5410c0606dfdf",
+    "apiKey": "6b903188e1198aeae7cdc9868d5fa5838a46867a0d8b097c6f2351ff99b96cf6",
     "model": "mistral:7b",
     "rateLimit": 8,
     "maxLength": 600,
@@ -25,18 +17,10 @@
   },
   {
     "name": "jamal_app",
-    "apiKey": "f47221b99cc48c1adc7d9556e48e3b5b09490cc74cece269",
+    "apiKey": "9cb25964299e82042db442e00eeec826dd47eb6aa6c63dc030caedde267754a5",
     "model": "mistral:7b",
     "rateLimit": 8,
     "maxLength": 600,
-    "enabled": false
-  },
-  {
-    "name": "jamal",
-    "apiKey": "46845b21e3681e6254c0bf924cb80399fbe350e03d38b725f746fa804a842fe2",
-    "model": "mistral:7b",
-    "rateLimit": 5,
-    "maxLength": 300,
-    "enabled": false
+    "enabled": true
   }
 ]
