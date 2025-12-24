@@ -1,1 +1,18 @@
-
+[
+    {
+        "name": "resume_app",
+        "apiKey": "rk_live_resume_001",
+        "model": "mistral:7b",
+        "rateLimit": 10,
+        "maxLength": 800,
+        "enabled": true
+    },
+    {
+        "name": "toy_admin",
+        "apiKey": "tk_live_toy_001",
+        "model": "llama3",
+        "rateLimit": 5,
+        "maxLength": 300,
+        "enabled": true
+    }
+]
