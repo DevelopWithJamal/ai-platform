@@ -1,4 +1,4 @@
-const BASE = "http://localhost:7000";
+const BASE = import.meta.env.VITE_API_BASE_URL;
 
 function authHeader() {
   return {
