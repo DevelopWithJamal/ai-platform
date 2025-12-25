@@ -22,8 +22,7 @@ clients.forEach(client => {
       message: { error: "Rate limit exceeded. Please slow down." }
     })
   );
-
-  console.log("🛡 Rate limiter initialized for:", client.apiKey);
+ 
 });
 
 // Middleware - apply only, no creation here
