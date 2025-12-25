@@ -1,1 +1,27 @@
-{}
+{
+  "6d63dc219bc50e63a0b635472285d12f222905368323a01a3e7619c047da7356": {
+    "clientName": "new_app",
+    "totalRequests": 7,
+    "lastUsed": "2025-12-25T06:34:50.256Z"
+  },
+  "dcb8651e382440c31bc873782c39862b903b6346b0e2fc223171468d55ff639c": {
+    "clientName": "jamal",
+    "totalRequests": 3,
+    "lastUsed": "2025-12-25T09:01:15.159Z"
+  },
+  "af04a04287dc93b79a20f71b3d5d3f78c9153b044d2adfe0abd220361d059291": {
+    "clientName": "jamal",
+    "totalRequests": 60,
+    "lastUsed": "2025-12-25T11:35:49.444Z"
+  },
+  "d9a69223a545aa90d8a1eb03c098fb52b2f05e3cebe626550ccdadd5dbf4384d": {
+    "clientName": "jamal",
+    "totalRequests": 1,
+    "lastUsed": "2025-12-25T09:08:45.663Z"
+  },
+  "a8314a01ee9d464a992da9e118011896fcbe0d7e09fe59b3aea50b07a0b6747f": {
+    "clientName": "toy",
+    "totalRequests": 3,
+    "lastUsed": "2025-12-25T10:44:50.992Z"
+  }
+}

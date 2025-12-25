@@ -1,22 +1,8 @@
-import fs from "fs";
-import path from "path";
+// backend/services/clients.service.js
 
-// Resolve path to ai-clients.json
-const clientsFilePath = path.resolve(
-  process.cwd(),
-  "config",
-  "ai-clients.json"
-);
+import { clients } from "../config/clients.config.js";
 
-// Load clients once at startup
-const clients = JSON.parse(
-  fs.readFileSync(clientsFilePath, "utf-8")
-);
-
-/**
- * Get client config by API key
- */
+// Return client details using API key
 export function getClientByApiKey(apiKey) {
-  return clients.find(client => client.apiKey === apiKey);
+  return clients.find(c => c.apiKey === apiKey);
 }
-

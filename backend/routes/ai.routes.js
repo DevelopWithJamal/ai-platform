@@ -1,49 +1,55 @@
+// backend/routes/ai.routes.js
+
 import express from "express";
 import { apiAuth } from "../middleware/auth.middleware.js";
 import { clientRateLimiter } from "../middleware/rateLimiter.js";
-import { enhanceText } from "../services/ai.service.js";
+import { generateAI } from "../services/ai.service.js";
 import { trackUsage } from "../services/usage.service.js";
 
 const router = express.Router();
 
 /**
- * POST /api/enhance
- * Body: { text: string }
+ * POST /api/generate
+ * Headers: x-api-key
+ * Body:
+ * {
+ *   "system": "optional system instruction",
+ *   "prompt": "main user prompt/input"
+ * }
  */
-router.post(
-  "/enhance",
-  apiAuth,
-  clientRateLimiter,
-  async (req, res) => {
-    try {
-      const { text } = req.body;
+router.post("/generate", apiAuth, clientRateLimiter, async (req, res) => {
+  try {
+    const { system, prompt } = req.body;
 
-      if (!text || typeof text !== "string") {
-        return res.status(400).json({
-          error: "Invalid input"
-        });
-      }
-
-      if (text.length > req.client.maxLength) {
-        return res.status(400).json({
-          error: "Text length exceeds limit"
-        });
-      }
-
-      // ✅ TRACK USAGE (THIS WAS MISSING)
-      trackUsage(req.client.apiKey, req.client.name);
-
-      // Call AI
-      const result = await enhanceText(text, req.client);
-
-      res.json({ result });
-    } catch (error) {
-      console.error("AI error:", error.message);
-      res.status(500).json({
-        error: "AI processing failed"
-      });
+    if (!prompt || typeof prompt !== "string") {
+      return res.status(400).json({ error: "Prompt is required" });
     }
+
+    if (prompt.length > req.client.maxLength) {
+      return res.status(400).json({ error: "Prompt exceeds max length" });
+    }
+
+    // Combine system + user message (like OpenAI)
+    const finalPrompt = system
+      ? `${system}\n\nUser:\n${prompt}`
+      : prompt;
+
+    // Track API usage
+    trackUsage(req.client.apiKey, req.client.name);
+
+    // Generate AI result
+    const result = await generateAI(finalPrompt, req.client);
+
+    return res.json({
+      success: true,
+      model: req.client.model,
+      result
+    });
+
+  } catch (err) {
+    console.error("AI Route Error:", err.message);
+    return res.status(500).json({ error: "AI request failed" });
   }
-);
+});
 
 export default router;

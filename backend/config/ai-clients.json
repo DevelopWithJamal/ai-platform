@@ -1,24 +1,8 @@
 [
   {
-    "name": "new_app",
-    "apiKey": "6d63dc219bc50e63a0b635472285d12f222905368323a01a3e7619c047da7356",
-    "model": "mistral:instruct",
-    "rateLimit": 8,
-    "maxLength": 600,
-    "enabled": true
-  },
-  {
-    "name": "jamal_app",
-    "apiKey": "9cb25964299e82042db442e00eeec826dd47eb6aa6c63dc030caedde267754a5",
-    "model": "mistral:7b",
-    "rateLimit": 8,
-    "maxLength": 600,
-    "enabled": true
-  },
-  {
     "name": "jamal",
-    "apiKey": "dcb8651e382440c31bc873782c39862b903b6346b0e2fc223171468d55ff639c",
-    "model": "mistral:7b",
+    "apiKey": "af04a04287dc93b79a20f71b3d5d3f78c9153b044d2adfe0abd220361d059291",
+    "model": "phi3:latest",
     "rateLimit": 5,
     "maxLength": 300,
     "enabled": true,
@@ -41,5 +25,14 @@
     "maxLength": 300,
     "enabled": true,
     "createdAt": "2025-12-24T15:47:27.023Z"
+  },
+  {
+    "name": "toy",
+    "apiKey": "a8314a01ee9d464a992da9e118011896fcbe0d7e09fe59b3aea50b07a0b6747f",
+    "model": "phi3:latest",
+    "rateLimit": 0,
+    "maxLength": 300,
+    "enabled": true,
+    "createdAt": "2025-12-25T10:40:38.273Z"
   }
 ]

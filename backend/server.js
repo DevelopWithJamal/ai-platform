@@ -1,37 +1,40 @@
+// backend/server.js
+
 import dotenv from "dotenv";
-dotenv.config(); // ✅ Load env FIRST
-import authRoutes from "./routes/auth.routes.js";
-import adminRoutes from "./routes/admin.routes.js";
-import clientsRoutes from "./routes/clients.routes.js";
+dotenv.config(); // load .env first
 
 import express from "express";
 import cors from "cors";
+
+import authRoutes from "./routes/auth.routes.js";
+import adminRoutes from "./routes/admin.routes.js";
+import clientsRoutes from "./routes/clients.routes.js";
 import aiRoutes from "./routes/ai.routes.js";
 
 const app = express();
 
+// Middlewares
 app.use(cors());
-app.use(express.json({ limit: "1mb" }));
-app.use("/auth", authRoutes);
-app.use("/admin/clients", clientsRoutes);
+app.use(express.json({ limit: "2mb" }));
 
-// Health check
+// Health Check
 app.get("/", (req, res) => {
   res.json({
     status: "OK",
-    message: "AI Platform Backend is running"
+    service: "AI Backend Running 🔥"
   });
 });
 
-// AI routes
-app.use("/api", aiRoutes);
+// Routes
+app.use("/auth", authRoutes);
 app.use("/admin", adminRoutes);
+app.use("/admin/clients", clientsRoutes);
+app.use("/api", aiRoutes);
 
+// Server Start
+const PORT = process.env.PORT || 7000;
+console.log("PORT FROM ENV:", PORT);
 
-const PORT = process.env.PORT || 5000;
-
-console.log("PORT FROM ENV:", process.env.PORT); // ✅ debug check
-
-app.listen(PORT, () => {
-  console.log(`✅ Server started on port ${PORT}`);
-});
+app.listen(PORT, () =>
+  console.log(`🚀 AI Backend Active at http://localhost:${PORT}`)
+);
